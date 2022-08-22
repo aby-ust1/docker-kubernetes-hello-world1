@@ -1,6 +1,8 @@
-FROM openjdk:8-jdk-alpine
-ENV PORT 8080
-EXPOSE 8080
-COPY target/*.jar /opt/app.jar
-WORKDIR /opt
-CMD ["java", "-jar", "app.jar"]
+#Simple Docker File
+
+FROM golang:1.13
+RUN mkdir /app
+ADD . /app
+WORKDIR /app
+RUN go build -o main .
+CMD ["/app/main"]
